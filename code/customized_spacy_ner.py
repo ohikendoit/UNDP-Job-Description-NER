@@ -61,7 +61,7 @@ with open("../data/undp_jobs.txt", "r", errors='ignore') as f:
     chunks = text.split("\t")
     for chunk in chunks:
         hits=[]
-        results = test_model(nlp,text)
+        results = test_model(nlp,chunk)
         if results != None:
             TRAIN_DATA.append(results)
 

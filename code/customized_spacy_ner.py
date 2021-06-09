@@ -52,13 +52,18 @@ patterns = create_training_data("../data/UNDP_units_original.json", "UNIT")
 generate_rules(patterns)
 
 nlp = spacy.load("unit_ner")
+nlp.max_length = 2**30
+
 TRAIN_DATA = []
 with open("../data/undp_jobs.txt", "r", errors='ignore') as f:
     text = f.read()
-    hits = []
-    results = test_model(nlp,text)
-    if results != None:
-        TRAIN_DATA.append(results)
+
+    chunks = text.split("\t")
+    for chunk in chunks:
+        hits=[]
+        results = test_model(nlp,text)
+        if results != None:
+            TRAIN_DATA.append(results)
 
 print(len(TRAIN_DATA))
 save_data("../data/units_training_data.json", TRAIN_DATA)

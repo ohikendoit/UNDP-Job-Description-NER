@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/UNDP-Job-Description-NER.iml" filepath="$PROJECT_DIR$/.idea/UNDP-Job-Description-NER.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/UNDP-Organizational-UNIT-NER.iml" filepath="$PROJECT_DIR$/.idea/UNDP-Organizational-UNIT-NER.iml" />
     </modules>
   </component>
 </project>

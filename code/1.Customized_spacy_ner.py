@@ -5,6 +5,7 @@ import spacy
 from spacy.lang.en import English
 from spacy.pipeline import EntityRuler
 import json
+import re
 import random
 
 def load_data(file):
@@ -45,6 +46,10 @@ def test_model(model, text):
         print(results)
     return (results)
 
+def clean_text(text):
+    cleaned = re.sub(r"[\(\[].*?[\)\]]", "", text)
+    return (cleaned)
+
 #The default format for the Spacy Train Data is the following
 #TRAIN_DATA = [(text, {"entities": [(start, end, label)]})]
 
@@ -52,7 +57,7 @@ patterns = create_training_data("../data/UNDP_units_original.json", "UNIT")
 generate_rules(patterns)
 
 nlp = spacy.load("unit_ner")
-nlp.max_length = 2**30
+#nlp.max_length = 2**30
 
 TRAIN_DATA = []
 with open("../data/undp_jobs.txt", "r", errors='ignore') as f:
@@ -60,8 +65,10 @@ with open("../data/undp_jobs.txt", "r", errors='ignore') as f:
 
     chunks = text.split("\t")
     for chunk in chunks:
-        hits=[]
-        results = test_model(nlp,chunk)
+        chunk = chunk.strip()
+        chunk = chunk.replace("\n", " ")
+        chunk = clean_text(chunk)
+        results = test_model(nlp, chunk)
         if results != None:
             TRAIN_DATA.append(results)
 

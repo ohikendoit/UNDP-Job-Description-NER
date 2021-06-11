@@ -41,10 +41,9 @@ def test_model(model, text):
     entities = []
     for ent in doc.ents:
         entities.append((ent.start_char, ent.end_char, ent.label_))
-    if len(entities)>0:
+    if len(entities) > 0:
         results = [text, {"entities": entities}]
-        print(results)
-    return (results)
+        return (results)
 
 def clean_text(text):
     cleaned = re.sub(r"[\(\[].*?[\)\]]", "", text)

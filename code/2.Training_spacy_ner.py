@@ -71,6 +71,6 @@ def train_spacy(data, iterations):
 nlp = spacy.load("unit_ner")
 
 TRAIN_DATA = load_data("../data/units_training_data.json")
-nlp = train_spacy(TRAIN_DATA, 30)
+nlp = train_spacy(TRAIN_DATA, 1)
 nlp.to_disk("ner_model")
 print(TRAIN_DATA)

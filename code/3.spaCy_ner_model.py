@@ -1,4 +1,5 @@
 import spacy
+import en_core_web_lg
 import re
 from spacy.lang.en import English
 from spacy.pipeline import EntityRuler
@@ -18,6 +19,8 @@ test = clean_text(test)
 #nlp = spacy.load("ner_model")
 nlp = spacy.load("en_core_web_lg")
 
-doc = nlp(test)
-for ent in doc.ents:
-    print(ent)
+#doc = nlp(test)
+#for ent in doc.ents:
+#    print(ent)
+
+spacy.displacy.serve(nlp(test), style="ent")
